@@ -13,12 +13,11 @@ const Select = ({
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState(null);
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+    onChange(newValue);
     setValue(newValue);
-    // changed setCollapsed(!newValue) to setCollapsed(!collapsed)
     setCollapsed(!collapsed);
   };
   return (
