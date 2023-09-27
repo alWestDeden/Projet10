@@ -16,6 +16,8 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
+        // pass onSuccess to true when call to API is done
+        onSuccess(true)
       } catch (err) {
         setSending(false);
         onError(err);
@@ -28,8 +30,8 @@ const Form = ({ onSuccess, onError }) => {
       <div className="row">
         <div className="col">
           {/* added a name for each Field component */}
-          <Field placeholder="" label="Nom" name="Name" />
-          <Field placeholder="" label="Prénom" name="Prénom" />
+          <Field placeholder="" label="Nom" />
+          <Field placeholder="" label="Prénom" />
           <Select
             selection={["Personel", "Entreprise"]}
             onChange={() => null}
@@ -37,7 +39,7 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
           />
-          <Field placeholder="" label="Email" name="email" />
+          <Field placeholder="" label="Email" />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>
@@ -46,7 +48,6 @@ const Form = ({ onSuccess, onError }) => {
           <Field
             placeholder="message"
             label="Message"
-            name="message"
             type={FIELD_TYPES.TEXTAREA}
           />
         </div>

@@ -13,7 +13,10 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  // import, sort by reverse chronology and select the last event
+  const {data} = useData()
+  const dataSorted = data?.events.toSorted((a, b) => new Date(b.date) - new Date(a.date))
+  const last = dataSorted?.shift()
   return <>
     <header>
       <Menu />
